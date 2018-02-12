@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Manager Lookup</title>
+    <link rel="stylesheet" href="reset.css" media="all">
+    <link rel="stylesheet" href="styles.css" media="all">
+    <script src='handlebars-v4.0.11.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="operations.js"></script>
+  </head>
+  <body>
+    <header>
+        <h1>Contact Manager</h1>
+        <p>Using Localstorage and Handlebars</p>
+      </div>
+    </header>
+    <main>
+
+      <!--Add contact / tag / Seach -->
+      <div class='row well'>
+        <div class='container add-contact-control'>
+          <div class='col-sm-6'>
+            <a class='button button-large button-outline add-contact'>Add Contact</a>
+          </div>
+          <div class='col-sm-6'>
+            <input type="text" name="search" placeholder="Search" class='form-control contact-name-search'>
+          </div>
+        </div>
+        <div class='container tag-control'>
+          <div class='col-sm-6'>
+          <a class='button button-large button-outline add-tag'>Add Tag</a>
+        </div>
+        <div class='col-sm-6'>
+          <input type="text" name="search" placeholder="Enter Tag" class='form-control tag-input'>
+        </div>
+        </div>
+        <div class='container tags-control'>
+          <span class='tags'>
+            <dl>
+              <dt><label>Tags:</label></dt>
+              <dd>
+                
+              </dd>    
+            </dl>      
+          </span>     
+        </div>
+      </div>
+
+      <!-- ADD CONTACT FORM -->
+      <div class='row form'>
+        <h2 class='page-header'>Create Contact</h2>
+        <form id='contact-form'>
+          <fieldset>
+            <dl>
+              <dt><label>Full name:</label></dt>
+              <dd><input type='text' class='form-control' name='full-name'></dd>
+              <dt><label>Email address:</label></dt>
+              <dd><input type='text' class='form-control' name='email'></dd>
+              <dt><label>Telephone number:</label></dt>
+              <dd><input type='text' class='form-control' name='phone'></dd>
+
+              <span class='tags'>
+                <dl>
+                  <dt><label>Tags:</label></dt>
+                  <dd>
+                    
+                  </dd>   
+                </dl>       
+              </span>                    
+
+
+              <dt></dt>
+              <dd class='small'>
+                <a id ='submit' class='button button-large button-outline submit-button' href='#'>Submit</a>
+              </dd>
+              <dd class='small'>
+                <a id='cancel' class='button button-large button-outline cancel-button' href='#'>Cancel</a>
+              </dd>
+            </dl>
+            
+          </fieldset>
+        </form>
+      </div>
+
+      <!-- CONTACTS CONTAINER-->
+      <ul id='contacts-container'></ul>
+
+      <!-- NO CONTACTS ROW-->
+      <div class='row no-contacts'>
+        <h3>There is no contacts.</h3>
+        <a class='button button-large button-outline add-contact'>Add Contact</a>
+      </div>
+
+    </main>
+
+      <!-- FOOTER -->
+      <div class='footer text-center'>
+        <p>Developed by <a href='www.devasaran.com'>Devsaran.com</a> and <a href='http://www.239listing.com'>239 Listing Real Estate</a></p>
+      </div>
+  </body>
+</html>
+
+
+<!-- templates -->
+
+<script type='text/x-handlebars' id='contact'>
+  <li class='contact'>
+    {{>contactContentPartial}}
+  </li>
+</script>
+
+<script type='text/x-handlebars' id='contactContent'>
+  <input type='hidden' name='contact_id_{{id}}' value="{{id}}">
+    <div class='contact-heading'><h3>{{name}}</h3></div>
+    <div class='contact-body'>
+      <dl>
+        <dt>Phone Number:</dt>
+        <dd>{{phone}}</dd>
+        <dt>Email:</dt>
+        <dd>{{email}}</dd>
+          <span class='rendered-tags'>
+          <dt>Tags:</dt>
+          <dd>
+            {{>tagsPartial}}
+          </dd>
+      </span>
+      </dl>
+    </div>
+    <div class='contact-btn-wrapper'>
+      <a href='#' class='button button-outline edit-contact'>Edit</a>
+      <a href='#' class='button button-outline delete-contact'>Delete</a>
+    </div>
+</script>
+
+<script type='text/x-handlebars' id='tags'>
+    <ul>
+      {{#each tags}}
+      <li>
+        <label><input type="checkbox" name="{{tag}}" value='{{tag}}'>#{{tag}}</label>
+      </li>
+      {{/each}}
+    </ul>
+</script>
+
+<script type='text/x-handlebars' id='tagsToRender'>
+    <ul>
+      {{#each tagObjs}}
+      <li>
+        #{{tag}}
+      </li>
+      {{/each}}
+    </ul>
+</script>
