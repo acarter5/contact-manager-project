@@ -39,7 +39,9 @@
             <dl>
               <dt><label>Tags:</label></dt>
               <dd>
-                
+                <ul>
+                  <!--tags control rendered here-->
+                </ul>
               </dd>    
             </dl>      
           </span>     
@@ -63,7 +65,9 @@
                 <dl>
                   <dt><label>Tags:</label></dt>
                   <dd>
-                    
+                    <ul>
+                      <!-- tags control rendered here-->
+                    </ul>
                   </dd>   
                 </dl>       
               </span>                    
@@ -109,7 +113,7 @@
   </li>
 </script>
 
-<script type='text/x-handlebars' id='contactContent'>
+<script type='text/x-handlebars' id='contact-content'>
   <input type='hidden' name='contact_id_{{id}}' value="{{id}}">
     <div class='contact-heading'><h3>{{name}}</h3></div>
     <div class='contact-body'>
@@ -132,17 +136,13 @@
     </div>
 </script>
 
-<script type='text/x-handlebars' id='tags'>
-    <ul>
-      {{#each tags}}
+<script type='text/x-handlebars' id='tags-control-template'>
       <li>
         <label><input type="checkbox" name="{{tag}}" value='{{tag}}'>#{{tag}}</label>
       </li>
-      {{/each}}
-    </ul>
 </script>
 
-<script type='text/x-handlebars' id='tagsToRender'>
+<script type='text/x-handlebars' id='tags-to-render'>
     <ul>
       {{#each tagObjs}}
       <li>
